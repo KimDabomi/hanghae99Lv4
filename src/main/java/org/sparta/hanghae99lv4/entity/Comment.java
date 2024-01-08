@@ -1,8 +1,14 @@
 package org.sparta.hanghae99lv4.entity;
 
+import org.sparta.hanghae99lv4.dto.CommentRequestDto;
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
+@NoArgsConstructor
 @Table(name = "comments")
 public class Comment {
 
@@ -24,5 +30,10 @@ public class Comment {
     @Column
     private String comment;
 
-
+	public Comment(CommentRequestDto commentRequestDto) {
+        this.user = commentRequestDto.getUser();
+        this.lecture = commentRequestDto.getLecture();
+        this.parent_id = commentRequestDto.getParent_id();
+        this.comment = commentRequestDto.getComment();
+	}
 }
