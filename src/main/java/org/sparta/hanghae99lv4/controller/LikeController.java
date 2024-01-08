@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/users/{userId}/lectures/{lectureId}")
 public class LikeController {
-
     private final LikeService likeService;
 
     @Autowired

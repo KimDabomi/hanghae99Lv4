@@ -1,5 +1,8 @@
 package org.sparta.hanghae99lv4.service;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.sparta.hanghae99lv4.dto.CommentRequestDto;
 import org.sparta.hanghae99lv4.dto.CommentResponseDto;
 import org.sparta.hanghae99lv4.entity.Comment;
@@ -10,10 +13,6 @@ import org.sparta.hanghae99lv4.repository.CommentRepository;
 import org.sparta.hanghae99lv4.repository.LectureRepository;
 import org.sparta.hanghae99lv4.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

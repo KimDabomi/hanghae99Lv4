@@ -1,11 +1,10 @@
 package org.sparta.hanghae99lv4.service;
 
 import lombok.RequiredArgsConstructor;
-
 import org.sparta.hanghae99lv4.dto.CommentResponseDto;
 import org.sparta.hanghae99lv4.dto.LectureRequestDto;
 import org.sparta.hanghae99lv4.dto.LectureResponseDto;
-import org.sparta.hanghae99lv4.dto.RecommentResponseDto;
+import org.sparta.hanghae99lv4.dto.ReCommentResponseDto;
 import org.sparta.hanghae99lv4.entity.Lecture;
 import org.sparta.hanghae99lv4.entity.Teacher;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
@@ -46,7 +45,7 @@ public class LectureService {
 		List<CommentResponseDto> comments = commentRepository.findByLectureId(lectureId)
 			.stream()
 			.map((comment) -> new CommentResponseDto(comment, commentRepository.findByParentId(comment.getId()).stream()
-				.map(RecommentResponseDto::new)
+				.map(ReCommentResponseDto::new)
 				.collect(Collectors.toList())))
 			.collect(Collectors.toList());
 		return new LectureResponseDto(lecture, likeCount, comments);

@@ -15,7 +15,7 @@ public class CommentResponseDto {
     private String user;
     private String comment;
     @Setter
-    private List<RecommentResponseDto> recomment;
+    private List<ReCommentResponseDto> reComments;
 
     public CommentResponseDto(Comment comment){
         this.id = comment.getId();
@@ -23,10 +23,10 @@ public class CommentResponseDto {
         this.comment = comment.getComment();
     }
 
-    public CommentResponseDto(Comment comment, List<RecommentResponseDto> recomment){
+    public CommentResponseDto(Comment comment, List<ReCommentResponseDto> reComments){
         this.id = comment.getId();
         this.user = comment.getUser().getEmail();
         this.comment = comment.getComment();
-        this.recomment = recomment;
+        this.reComments = reComments;
     }
 }

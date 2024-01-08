@@ -2,7 +2,10 @@ package org.sparta.hanghae99lv4.service;
 
 import lombok.RequiredArgsConstructor;
 import org.sparta.hanghae99lv4.dto.UserRequestDto;
-import org.sparta.hanghae99lv4.entity.*;
+import org.sparta.hanghae99lv4.entity.Comment;
+import org.sparta.hanghae99lv4.entity.Like;
+import org.sparta.hanghae99lv4.entity.User;
+import org.sparta.hanghae99lv4.entity.UserAuthEnum;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
 import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.repository.CommentRepository;
