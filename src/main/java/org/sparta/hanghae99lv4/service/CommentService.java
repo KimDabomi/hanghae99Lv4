@@ -3,13 +3,19 @@ package org.sparta.hanghae99lv4.service;
 import org.sparta.hanghae99lv4.dto.CommentRequestDto;
 import org.sparta.hanghae99lv4.dto.CommentResponseDto;
 import org.sparta.hanghae99lv4.entity.Comment;
+import org.sparta.hanghae99lv4.jwt.JwtUtil;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
 import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.repository.CommentRepository;
 import org.sparta.hanghae99lv4.repository.LectureRepository;
 import org.sparta.hanghae99lv4.repository.UserRepository;
+import org.sparta.hanghae99lv4.security.UserDetailsImpl;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Jwt;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +26,8 @@ public class CommentService {
 	private final CommentRepository commentRepository;
 	private final UserRepository userRepository;
 	private final LectureRepository lectureRepository;
+
+	private final JwtUtil jwtUtil;
 
 	public CommentResponseDto createComments(CommentRequestDto commentRequestDto) {
 		Comment comment = commentRepository.save(new Comment(commentRequestDto));
@@ -36,18 +44,26 @@ public class CommentService {
 
 	@Transactional
 	public CommentResponseDto updateComments(Long commentId, CommentRequestDto commentRequestDto) {
-		// 회원 체크
-		// API 명세서 수정 요청 필요 (userId 제거)
 		Comment comment = commentRepository.findById(commentId)
 			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_COMMENT_ERROR_MESSAGE.getErrorMessage()));
+
+		if (!jwtUtil.getUserEmail().equals(comment.getUser().getEmail())) {
+			throw new IllegalArgumentException(ErrorMessage.COMMENT_UPDATE_ERROR_MESSAGE.getErrorMessage());
+		}
+
 		comment.setComment(commentRequestDto.getComment());
 		return new CommentResponseDto(comment);
 	}
 
 	@Transactional
 	public String deleteComments(Long commentId) {
-		// 회원 체크
-		// API 명세서 수정 요청 필요 (userId 제거)
+		Comment comment = commentRepository.findById(commentId)
+			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_COMMENT_ERROR_MESSAGE.getErrorMessage()));
+
+		if (!jwtUtil.getUserEmail().equals(comment.getUser().getEmail())) {
+			throw new IllegalArgumentException(ErrorMessage.COMMENT_DELETE_ERROR_MESSAGE.getErrorMessage());
+		}
+
 		commentRepository.deleteById(commentId);
 		return SuccessMessage.DELETE_SUCCESS_MESSAGE.getSuccessMessage();
 	}

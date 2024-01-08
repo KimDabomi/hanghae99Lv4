@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.sparta.hanghae99lv4.entity.UserAuthEnum;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -92,6 +94,11 @@ public class JwtUtil {
 
     public Claims getUserInfoFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+    }
+
+    public String getUserEmail(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
     public String getTokenFromRequest(HttpServletRequest req) {
