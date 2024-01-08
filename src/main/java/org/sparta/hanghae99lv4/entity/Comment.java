@@ -17,15 +17,15 @@ public class Comment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "lecture_id")
+    @JoinColumn(name = "lecture_id", nullable = false)
     private Lecture lecture;
 
-    @Column
-    private Long parent_id;
+    @Column(name = "parent_id")
+    private Long parentId;
 
     @Column
     private String comment;
@@ -33,7 +33,7 @@ public class Comment {
 	public Comment(CommentRequestDto commentRequestDto) {
         this.user = commentRequestDto.getUser();
         this.lecture = commentRequestDto.getLecture();
-        this.parent_id = commentRequestDto.getParent_id();
+        this.parentId = commentRequestDto.getParentId();
         this.comment = commentRequestDto.getComment();
 	}
 }

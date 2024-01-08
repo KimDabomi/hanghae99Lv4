@@ -15,13 +15,13 @@ public class CommentService {
 	private final CommentRepository commentRepository;
 
 	// 조회
-	public CommentResponseDto getComment(Long id) {
+	public CommentResponseDto getComments(Long id) {
 		return new CommentResponseDto(
 			commentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("")));
 	}
 
 	// 등록
-	public CommentResponseDto createComment(CommentRequestDto commentRequestDto) {
+	public CommentResponseDto createComments(CommentRequestDto commentRequestDto) {
 		return new CommentResponseDto(commentRepository.save(new Comment(commentRequestDto)));
 	}
 
