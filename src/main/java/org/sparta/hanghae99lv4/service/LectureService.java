@@ -56,7 +56,6 @@ public class LectureService {
                 .collect(Collectors.toList());
     }
 
-
     private Lecture findLecture(Long lectureId){
         return lectureRepository.findById(lectureId).orElseThrow(() ->
                 new IllegalArgumentException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage()));
