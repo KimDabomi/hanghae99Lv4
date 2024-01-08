@@ -1,5 +1,6 @@
 package org.sparta.hanghae99lv4.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Teacher {
     private String company;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String phone;
 
     @Column(name = "teacher_intro", nullable = false)

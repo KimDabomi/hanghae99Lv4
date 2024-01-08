@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class CommentController {
 	private final CommentService commentService;
 
-	@PostMapping("/users/lectures/comment")
+	@PostMapping("/users/lectures/comments")
 	public ResponseEntity<CommentResponseDto> createComments(@RequestBody CommentRequestDto commentRequestDto) {
 		return ResponseEntity.ok(commentService.createComments(commentRequestDto));
 	}
