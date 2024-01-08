@@ -4,7 +4,7 @@
 ## API 명세서
 ![API image](./src/main/resources/static/images/lv4API.png)
 ## ERD
-![ERD image](./src/main/resources/static/images/lv4ERD.png)
+![ERD image](./src/main/resources/static/images/lv4ERDv2.png)
 ## 구현 기능
 - [x]  회원 가입 기능
     - `이메일`, `비밀번호`, `성별`, `전화번호`, `주소`, `권한`을 저장할 수 있습니다.
