@@ -5,6 +5,7 @@ import org.sparta.hanghae99lv4.dto.CommentRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -18,10 +19,12 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @Setter
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "lecture_id", nullable = false)
+    @Setter
     private Lecture lecture;
 
     @Column(name = "parent_id")
