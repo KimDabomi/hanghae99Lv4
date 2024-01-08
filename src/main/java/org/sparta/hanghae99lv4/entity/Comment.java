@@ -18,7 +18,7 @@ public class Comment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @Setter
     private User user;
 
@@ -31,6 +31,7 @@ public class Comment {
     private Long parentId;
 
     @Column
+    @Setter
     private String comment;
 
 	public Comment(CommentRequestDto commentRequestDto) {

@@ -1,18 +1,18 @@
 package org.sparta.hanghae99lv4.service;
 
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-
 import org.sparta.hanghae99lv4.dto.CommentRequestDto;
 import org.sparta.hanghae99lv4.dto.CommentResponseDto;
 import org.sparta.hanghae99lv4.entity.Comment;
-import org.sparta.hanghae99lv4.entity.Lecture;
-import org.sparta.hanghae99lv4.entity.User;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
+import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.repository.CommentRepository;
 import org.sparta.hanghae99lv4.repository.LectureRepository;
 import org.sparta.hanghae99lv4.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +21,6 @@ public class CommentService {
 	private final UserRepository userRepository;
 	private final LectureRepository lectureRepository;
 
-	// 등록
-	// NULL 없애야하니까 값 넣어주기
 	public CommentResponseDto createComments(CommentRequestDto commentRequestDto) {
 		Comment comment = commentRepository.save(new Comment(commentRequestDto));
 
@@ -30,13 +28,27 @@ public class CommentService {
 			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage())));
 
 		comment.setLecture(lectureRepository.findById(comment.getLecture().getLectureId())
-			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage())));
+			.orElseThrow(
+				() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage())));
 
 		return new CommentResponseDto(comment);
 	}
 
-	// 수정
+	@Transactional
+	public CommentResponseDto updateComments(Long commentId, CommentRequestDto commentRequestDto) {
+		// 회원 체크
+		// API 명세서 수정 요청 필요 (userId 제거)
+		Comment comment = commentRepository.findById(commentId)
+			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_COMMENT_ERROR_MESSAGE.getErrorMessage()));
+		comment.setComment(commentRequestDto.getComment());
+		return new CommentResponseDto(comment);
+	}
 
-	// 삭제
-
+	@Transactional
+	public String deleteComments(Long commentId) {
+		// 회원 체크
+		// API 명세서 수정 요청 필요 (userId 제거)
+		commentRepository.deleteById(commentId);
+		return SuccessMessage.DELETE_SUCCESS_MESSAGE.getSuccessMessage();
+	}
 }
