@@ -11,5 +11,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByLectureId(Long lectureId);
 
-    List<Comment> findByLecture(Lecture lecture);
+    List<Comment> findByLectureIn(List<Lecture> lecture);
 }

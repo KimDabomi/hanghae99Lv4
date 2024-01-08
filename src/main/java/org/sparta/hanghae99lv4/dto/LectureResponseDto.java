@@ -19,9 +19,9 @@ public class LectureResponseDto {
     private String category;
     private Date regiDate;
     private int likeCount;
-    private List<Comment> comments;
+    private List<CommentResponseDto> comments;
 
-    public LectureResponseDto(Lecture saveLecture, int likeCount, List<Comment> comments) {
+    public LectureResponseDto(Lecture saveLecture, int likeCount, List<CommentResponseDto> comments) {
         this.lectureId = saveLecture.getId();
         this.teacher = saveLecture.getTeacher();
         this.lectureName = saveLecture.getLectureName();

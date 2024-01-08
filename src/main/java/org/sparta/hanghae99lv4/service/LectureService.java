@@ -41,14 +41,20 @@ public class LectureService {
     public LectureResponseDto getLecture(Long lectureId) {
         Lecture lecture = findLecture(lectureId);
         int likeCount = likeRepository.countByLecture(lecture);
-        List<Comment> comments = commentRepository.findByLectureId(lectureId);
+        List<CommentResponseDto> comments = commentRepository.findByLectureId(lectureId).stream()
+                .map((comment) -> new CommentResponseDto(comment))
+                .collect(Collectors.toList());
         return new LectureResponseDto(lecture, likeCount, comments);
     }
 
     public List<LectureResponseDto> getLectureListForCategorySorted(String category, Sort sort) {
         List<Lecture> lectures = lectureRepository.findAllByCategoryOrderByRegiDateDesc(category, sort);
+        List<CommentResponseDto> comments = commentRepository.findByLectureIn(lectures).stream()
+                .map((comment) -> new CommentResponseDto(comment))
+                .collect(Collectors.toList());
+
         return lectures.stream()
-                .map(lecture -> new LectureResponseDto(lecture, likeRepository.countByLecture(lecture), commentRepository.findByLecture(lecture)))
+                .map(lecture -> new LectureResponseDto(lecture, likeRepository.countByLecture(lecture), comments))
                 .collect(Collectors.toList());
     }
 

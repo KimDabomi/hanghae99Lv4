@@ -10,15 +10,13 @@ import org.sparta.hanghae99lv4.entity.User;
 @RequiredArgsConstructor
 public class CommentResponseDto {
     private Long id;
-    private User user;
-    private Lecture lecture;
+    private String user;
     private Long parentId;
     private String comment;
 
     public CommentResponseDto(Comment comment){
         this.id = comment.getId();
-        this.user = comment.getUser();
-        this.lecture = comment.getLecture();
+        this.user = comment.getUser().getEmail();
         this.parentId = comment.getParentId();
         this.comment = comment.getComment();
     }
