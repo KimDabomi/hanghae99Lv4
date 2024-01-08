@@ -47,18 +47,15 @@ public class UserService {
     }
 
     public ResponseEntity<String> deleteUser(Long userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if(optionalUser.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage());
-        }
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage()));
 
-        User user = optionalUser.get();
         List<Comment> comments = commentRepository.findByUser(user);
         commentRepository.deleteAll(comments);
 
         List<Like> likes = likeRepository.findByUser(user);
         likeRepository.deleteAll(likes);
         userRepository.delete(user);
+        
         return ResponseEntity.status(HttpStatus.OK).body(SuccessMessage.DELETE_SUCCESS_MESSAGE.getSuccessMessage());
     }
 
