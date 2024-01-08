@@ -8,6 +8,7 @@ import org.sparta.hanghae99lv4.entity.Teacher;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
 import org.sparta.hanghae99lv4.repository.LectureRepository;
 import org.sparta.hanghae99lv4.repository.TeacherRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,8 +35,8 @@ public class LectureService {
         return new LectureResponseDto(findLecture(lectureId));
     }
 
-    public List<LectureResponseDto> getLectureListForCategory(String category) {
-        return lectureRepository.findAllByCategoryOrderByRegiDateDesc(category)
+    public List<LectureResponseDto> getLectureListForCategorySorted(String category, Sort sort) {
+        return lectureRepository.findAllByCategoryOrderByRegiDateDesc(category, sort)
                 .stream().map(LectureResponseDto::new).toList();
     }
 
