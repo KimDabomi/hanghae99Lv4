@@ -1,23 +1,32 @@
 package org.sparta.hanghae99lv4.dto;
 
+import java.util.List;
+
 import org.sparta.hanghae99lv4.entity.Comment;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @RequiredArgsConstructor
 public class CommentResponseDto {
     private Long id;
     private String user;
-    private Long parentId;
     private String comment;
-    private CommentResponseDto recomment;
+    @Setter
+    private List<RecommentResponseDto> recomment;
 
     public CommentResponseDto(Comment comment){
         this.id = comment.getId();
         this.user = comment.getUser().getEmail();
-        this.parentId = comment.getParentId();
         this.comment = comment.getComment();
+    }
+
+    public CommentResponseDto(Comment comment, List<RecommentResponseDto> recomment){
+        this.id = comment.getId();
+        this.user = comment.getUser().getEmail();
+        this.comment = comment.getComment();
+        this.recomment = recomment;
     }
 }

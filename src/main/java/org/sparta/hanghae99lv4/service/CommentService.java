@@ -25,14 +25,18 @@ public class CommentService {
 	private final JwtUtil jwtUtil;
 
 	public CommentResponseDto createComments(CommentRequestDto commentRequestDto) {
+		if (commentRequestDto.getParentId() != null) {
+			commentRepository.findById(commentRequestDto.getParentId())
+				.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_COMMENT_ERROR_MESSAGE.getErrorMessage()));
+		}
+
 		Comment comment = commentRepository.save(new Comment(commentRequestDto));
 
 		comment.setUser(userRepository.findById(comment.getUser().getId())
 			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage())));
 
 		comment.setLecture(lectureRepository.findById(comment.getLecture().getId())
-			.orElseThrow(
-				() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage())));
+			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage())));
 
 		return new CommentResponseDto(comment);
 	}
