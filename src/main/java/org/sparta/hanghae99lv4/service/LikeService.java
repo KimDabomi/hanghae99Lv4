@@ -7,6 +7,7 @@ import org.sparta.hanghae99lv4.entity.Lecture;
 import org.sparta.hanghae99lv4.entity.Like;
 import org.sparta.hanghae99lv4.entity.User;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
+import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.repository.LectureRepository;
 import org.sparta.hanghae99lv4.repository.LikeRepository;
 import org.sparta.hanghae99lv4.repository.UserRepository;
@@ -32,7 +33,7 @@ public class LikeService {
 
         if (likeRepository.existsByUserAndLecture(user, lecture)) {
             likeRepository.deleteByUserAndLecture(user, lecture);
-            return new ResponseEntity<>("좋아요가 취소되었습니다.", HttpStatus.OK);
+            return new ResponseEntity<>(SuccessMessage.UNLIKE_MESSAGE.getSuccessMessage(), HttpStatus.OK);
         }
 
         Like like = new Like();
@@ -40,6 +41,6 @@ public class LikeService {
         like.setLecture(lecture);
         likeRepository.save(like);
 
-        return new ResponseEntity<>("좋아요가 생성되었습니다.", HttpStatus.CREATED);
+        return new ResponseEntity<>(SuccessMessage.LIKE_MESSAGE.getSuccessMessage(), HttpStatus.CREATED);
     }
 }

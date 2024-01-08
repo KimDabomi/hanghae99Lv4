@@ -1,9 +1,8 @@
 package org.sparta.hanghae99lv4.dto;
 
+import lombok.Getter;
 import org.sparta.hanghae99lv4.entity.Lecture;
 import org.sparta.hanghae99lv4.entity.User;
-
-import lombok.Getter;
 
 @Getter
 public class CommentRequestDto {

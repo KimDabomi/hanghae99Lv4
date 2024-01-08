@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sparta.hanghae99lv4.dto.LectureRequestDto;
 
-
 @Entity
 @Getter
 @NoArgsConstructor
