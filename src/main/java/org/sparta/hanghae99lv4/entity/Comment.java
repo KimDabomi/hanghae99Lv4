@@ -1,10 +1,18 @@
 package org.sparta.hanghae99lv4.entity;
 
-import jakarta.persistence.*;
+import org.sparta.hanghae99lv4.dto.CommentRequestDto;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.sparta.hanghae99lv4.dto.CommentRequestDto;
 
 @Entity
 @Getter
@@ -31,6 +39,7 @@ public class Comment {
     @Column
     @Setter
     private String comment;
+
 
 	public Comment(CommentRequestDto commentRequestDto) {
         this.user = commentRequestDto.getUser();
