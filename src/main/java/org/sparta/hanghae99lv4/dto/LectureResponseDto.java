@@ -1,11 +1,13 @@
 package org.sparta.hanghae99lv4.dto;
 
 import lombok.Getter;
+import org.sparta.hanghae99lv4.entity.Comment;
 import org.sparta.hanghae99lv4.entity.Lecture;
 import org.sparta.hanghae99lv4.entity.Like;
 import org.sparta.hanghae99lv4.entity.Teacher;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 public class LectureResponseDto {
@@ -17,8 +19,9 @@ public class LectureResponseDto {
     private String category;
     private Date regiDate;
     private int likeCount;
+    private List<Comment> comments;
 
-    public LectureResponseDto(Lecture saveLecture, int likeCount) {
+    public LectureResponseDto(Lecture saveLecture, int likeCount, List<Comment> comments) {
         this.lectureId = saveLecture.getId();
         this.teacher = saveLecture.getTeacher();
         this.lectureName = saveLecture.getLectureName();
@@ -27,5 +30,6 @@ public class LectureResponseDto {
         this.category = saveLecture.getCategory();
         this.regiDate = saveLecture.getRegiDate();
         this.likeCount = likeCount;
+        this.comments = comments;
     }
 }

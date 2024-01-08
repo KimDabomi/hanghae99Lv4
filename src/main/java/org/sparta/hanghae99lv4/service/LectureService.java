@@ -1,12 +1,15 @@
 package org.sparta.hanghae99lv4.service;
 
 import lombok.RequiredArgsConstructor;
+import org.sparta.hanghae99lv4.dto.CommentResponseDto;
 import org.sparta.hanghae99lv4.dto.LectureRequestDto;
 import org.sparta.hanghae99lv4.dto.LectureResponseDto;
+import org.sparta.hanghae99lv4.entity.Comment;
 import org.sparta.hanghae99lv4.entity.Lecture;
 import org.sparta.hanghae99lv4.entity.Like;
 import org.sparta.hanghae99lv4.entity.Teacher;
 import org.sparta.hanghae99lv4.message.ErrorMessage;
+import org.sparta.hanghae99lv4.repository.CommentRepository;
 import org.sparta.hanghae99lv4.repository.LectureRepository;
 import org.sparta.hanghae99lv4.repository.LikeRepository;
 import org.sparta.hanghae99lv4.repository.TeacherRepository;
@@ -22,6 +25,7 @@ public class LectureService {
     private final LectureRepository lectureRepository;
     private final TeacherRepository teacherRepository;
     private final LikeRepository likeRepository;
+    private final CommentRepository commentRepository;
 
     public LectureResponseDto createLecture(LectureRequestDto lectureRequestDto) {
         Long teacherId = lectureRequestDto.getTeacherId();
@@ -32,21 +36,22 @@ public class LectureService {
         Lecture lecture = new Lecture(lectureRequestDto, teacher);
         Lecture saveLecture = lectureRepository.save(lecture);
 
-        return new LectureResponseDto(saveLecture, 0);
+        return new LectureResponseDto(saveLecture, 0, null);
     }
-
     public LectureResponseDto getLecture(Long lectureId) {
         Lecture lecture = findLecture(lectureId);
         int likeCount = likeRepository.countByLecture(lecture);
-        return new LectureResponseDto(lecture, likeCount);
+        List<Comment> comments = commentRepository.findByLectureId(lectureId);
+        return new LectureResponseDto(lecture, likeCount, comments);
     }
 
     public List<LectureResponseDto> getLectureListForCategorySorted(String category, Sort sort) {
         List<Lecture> lectures = lectureRepository.findAllByCategoryOrderByRegiDateDesc(category, sort);
         return lectures.stream()
-                .map(lecture -> new LectureResponseDto(lecture, likeRepository.countByLecture(lecture)))
+                .map(lecture -> new LectureResponseDto(lecture, likeRepository.countByLecture(lecture), commentRepository.findByLecture(lecture)))
                 .collect(Collectors.toList());
     }
+
 
     private Lecture findLecture(Long lectureId){
         return lectureRepository.findById(lectureId).orElseThrow(() ->

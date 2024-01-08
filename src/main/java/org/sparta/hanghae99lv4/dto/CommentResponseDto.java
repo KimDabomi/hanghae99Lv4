@@ -1,11 +1,13 @@
 package org.sparta.hanghae99lv4.dto;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.sparta.hanghae99lv4.entity.Comment;
 import org.sparta.hanghae99lv4.entity.Lecture;
 import org.sparta.hanghae99lv4.entity.User;
 
 @Getter
+@RequiredArgsConstructor
 public class CommentResponseDto {
     private Long id;
     private User user;
