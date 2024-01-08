@@ -1,9 +1,7 @@
 package org.sparta.hanghae99lv4.dto;
 
 import lombok.Getter;
-import org.sparta.hanghae99lv4.entity.Comment;
 import org.sparta.hanghae99lv4.entity.Lecture;
-import org.sparta.hanghae99lv4.entity.Like;
 import org.sparta.hanghae99lv4.entity.Teacher;
 
 import java.util.Date;

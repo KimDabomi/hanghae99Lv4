@@ -1,18 +1,16 @@
 package org.sparta.hanghae99lv4.entity;
 
-import org.sparta.hanghae99lv4.dto.CommentRequestDto;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.sparta.hanghae99lv4.dto.CommentRequestDto;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @Table(name = "comments")
 public class Comment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,5 @@
 package org.sparta.hanghae99lv4.repository;
 
-import org.sparta.hanghae99lv4.dto.CommentResponseDto;
 import org.sparta.hanghae99lv4.entity.Comment;
 import org.sparta.hanghae99lv4.entity.Lecture;
 import org.springframework.data.jpa.repository.JpaRepository;
