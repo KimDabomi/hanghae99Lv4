@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.sparta.hanghae99lv4.dto.LoginRequestDto;
 import org.sparta.hanghae99lv4.entity.UserAuthEnum;
+import org.sparta.hanghae99lv4.message.ErrorMessage;
 import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.security.UserDetailsImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -65,5 +66,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         log.info(LOGIN_FAIL_LOG);
         response.setStatus(401);
+        response.getWriter().write(ErrorMessage.PASSWORD_MISMATCH_ERROR_MESSAGE.getErrorMessage());
     }
 }
