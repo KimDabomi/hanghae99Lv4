@@ -27,7 +27,7 @@ public class CommentService {
 		comment.setUser(userRepository.findById(comment.getUser().getId())
 			.orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage())));
 
-		comment.setLecture(lectureRepository.findById(comment.getLecture().getLectureId())
+		comment.setLecture(lectureRepository.findById(comment.getLecture().getId())
 			.orElseThrow(
 				() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage())));
 
