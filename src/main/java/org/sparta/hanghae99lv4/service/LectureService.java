@@ -35,10 +35,6 @@ public class LectureService {
         return new LectureResponseDto(saveLecture, 0);
     }
 
-//    public LectureResponseDto getLecture(Long lectureId) {
-//        return new LectureResponseDto(findLecture(lectureId));
-//    }
-
     public LectureResponseDto getLecture(Long lectureId) {
         Lecture lecture = findLecture(lectureId);
         int likeCount = likeRepository.countByLecture(lecture);
