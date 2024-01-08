@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sparta.hanghae99lv4.dto.LectureRequestDto;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -15,7 +13,7 @@ import java.util.List;
 public class Lecture extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lectureId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id",nullable = false)
