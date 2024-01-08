@@ -19,7 +19,7 @@ public class LectureResponseDto {
     private int likeCount;
 
     public LectureResponseDto(Lecture saveLecture, int likeCount) {
-        this.lectureId = saveLecture.getLectureId();
+        this.lectureId = saveLecture.getId();
         this.teacher = saveLecture.getTeacher();
         this.lectureName = saveLecture.getLectureName();
         this.price = saveLecture.getPrice();

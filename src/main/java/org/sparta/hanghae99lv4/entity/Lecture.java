@@ -15,7 +15,7 @@ import java.util.List;
 public class Lecture extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lectureId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id",nullable = false)

@@ -1,5 +1,6 @@
 package org.sparta.hanghae99lv4.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
