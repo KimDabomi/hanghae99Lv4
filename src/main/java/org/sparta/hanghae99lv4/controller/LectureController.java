@@ -19,7 +19,7 @@ public class LectureController {
 
     private final LectureService lectureService;
 
-    @PostMapping("/admin/lectures")
+    @PostMapping("/admins/lectures")
     public ResponseEntity<LectureResponseDto> createLecture(@RequestBody LectureRequestDto lectureRequestDto){
         LectureResponseDto lectureResponseDto = lectureService.createLecture(lectureRequestDto);
         return ResponseEntity.ok(lectureResponseDto);

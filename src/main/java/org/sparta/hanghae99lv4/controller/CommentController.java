@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/users/lectures")
 public class CommentController {
 	private final CommentService commentService;
 
-	@PostMapping("/users/lectures/comments")
+	@PostMapping("/comments")
 	public ResponseEntity<CommentResponseDto> createComments(@RequestBody CommentRequestDto commentRequestDto) {
 		return ResponseEntity.ok(commentService.createComments(commentRequestDto));
 	}
 
-	@PutMapping("/users/lectures/comments/{commentId}")
+	@PutMapping("/comments/{commentId}")
 	public ResponseEntity<CommentResponseDto> updateComments(@PathVariable Long commentId, @RequestBody CommentRequestDto commentRequestDto) {
 		return ResponseEntity.ok(commentService.updateComments(commentId, commentRequestDto));
 	}
 
-	@DeleteMapping("/users/lectures/comments/{commentId}")
+	@DeleteMapping("/comments/{commentId}")
 	public ResponseEntity<String> deleteComments(@PathVariable Long commentId){
 		return ResponseEntity.ok(commentService.deleteComments(commentId));
 	}
