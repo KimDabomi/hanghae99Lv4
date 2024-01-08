@@ -50,7 +50,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 return;
             }
         }
-
+        res.setContentType("text/plain;charset=utf-8");
         filterChain.doFilter(req, res);
     }
 

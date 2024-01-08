@@ -12,8 +12,8 @@ public enum ErrorMessage {
     EMPTY_JWT_ERROR_MESSAGE("JWT claims is empty, 잘못된 JWT 토큰 입니다."),
     EMAIL_FORMAT_ERROR_MESSAGE("올바른 이메일 형식이 아닙니다."),
     PASSWORD_VALIDATION_ERROR_MESSAGE("비밀번호는 최소 8자 이상, 15자 이하이며 알파벳 대소문자, 숫자, 특수문자로 구성되어야 합니다."),
-    PASSWORD_MISMATCH_ERROR_MESSAGE("Login failed."),
-    AUTH_EXCEPTION_MESSAGE("This is a behavior that can only be done by an administrator."),
+    PASSWORD_MISMATCH_ERROR_MESSAGE("로그인에 실패하였습니다."),
+    AUTH_EXCEPTION_MESSAGE("관리자만 가능한 기능입니다."),
     COMMENT_UPDATE_ERROR_MESSAGE("작성자만 수정이 가능합니다."),
     COMMENT_DELETE_ERROR_MESSAGE("작성자만 삭제가 가능합니다.");
 
