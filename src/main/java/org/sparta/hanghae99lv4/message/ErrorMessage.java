@@ -2,7 +2,7 @@ package org.sparta.hanghae99lv4.message;
 
 public enum ErrorMessage {
     EXIST_TOKEN_ERROR_MESSAGE("토큰을 찾을 수 없습니다."),
-    EXIST_STAFF_ERROR_MESSAGE("존재하지 않는 관리자입니다."),
+    EXIST_USER_ERROR_MESSAGE("존재하지 않는 사용자입니다."),
     EXIST_TEACHER_ERROR_MESSAGE("존재하지 않는 강사입니다."),
     EXIST_LECTURE_ERROR_MESSAGE("존재하지 않는 강의입니다."),
     INVALID_JWT_ERROR_MESSAGE("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다."),
