@@ -19,6 +19,7 @@ import java.io.IOException;
 
 @Slf4j(topic = "JWT 검증 및 인가")
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
+
     private static final String TOKEN_ERROR_LOG = "Token Error";
     private final JwtUtil jwtUtil;
     private final UserDetailsServiceImpl userDetailsService;

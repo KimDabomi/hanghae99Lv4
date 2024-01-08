@@ -9,6 +9,7 @@ import java.util.List;
 
 @Getter
 public class LectureResponseDto {
+
     private Long lectureId;
     private Teacher teacher;
     private String lectureName;

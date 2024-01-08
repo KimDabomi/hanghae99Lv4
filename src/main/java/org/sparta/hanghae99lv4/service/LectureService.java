@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class LectureService {
+
 	private final LectureRepository lectureRepository;
 	private final TeacherRepository teacherRepository;
 	private final LikeRepository likeRepository;

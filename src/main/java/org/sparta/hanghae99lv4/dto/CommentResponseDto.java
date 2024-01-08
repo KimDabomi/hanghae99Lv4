@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @RequiredArgsConstructor
 public class CommentResponseDto {
+
     private Long id;
     private String user;
     private String comment;

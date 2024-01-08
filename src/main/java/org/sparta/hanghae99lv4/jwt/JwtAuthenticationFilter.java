@@ -20,6 +20,7 @@ import java.io.IOException;
 
 @Slf4j(topic = "로그인 및 JWT 생성")
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
     private static final String LOGIN_ATTEMPT_LOG = "로그인 시도";
     private static final String LOGIN_SUCCESS_AND_JWT_TOKEN_CREATION_LOG = "로그인 성공 및 JWT 생성";
     private static final String LOGIN_FAIL_LOG = "로그인 실패";

@@ -19,6 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "comments")
 public class Comment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

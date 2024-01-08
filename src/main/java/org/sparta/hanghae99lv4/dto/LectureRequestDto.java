@@ -7,6 +7,7 @@ import org.sparta.hanghae99lv4.entity.Teacher;
 @Getter
 @NoArgsConstructor
 public class LectureRequestDto {
+
     private Teacher teacher;
     private String lectureName;
     private Integer price;

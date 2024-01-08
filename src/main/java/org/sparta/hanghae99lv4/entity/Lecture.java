@@ -10,6 +10,7 @@ import org.sparta.hanghae99lv4.dto.LectureRequestDto;
 @NoArgsConstructor
 @Table(name = "lectures")
 public class Lecture extends Timestamped {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

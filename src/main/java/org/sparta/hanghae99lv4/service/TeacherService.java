@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional
 public class TeacherService {
+
     private final TeacherRepository teacherRepository;
 
     public TeacherResponseDto createTeacher(TeacherRequestDto requestDto) {

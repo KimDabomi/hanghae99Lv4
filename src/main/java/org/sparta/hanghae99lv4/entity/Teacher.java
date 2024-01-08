@@ -11,6 +11,7 @@ import org.sparta.hanghae99lv4.dto.TeacherRequestDto;
 @NoArgsConstructor
 @Table(name = "teachers")
 public class Teacher {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
