@@ -3,18 +3,17 @@ package org.sparta.hanghae99lv4.controller;
 import org.sparta.hanghae99lv4.dto.UserRequestDto;
 import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public class JoinController {
 
     private UserService userService;
 
-    public UserController(UserService userService) {
+    public JoinController(UserService userService) {
         this.userService = userService;
     }
 
@@ -24,11 +23,6 @@ public class UserController {
             userService.createUser(requestDto);
             return new ResponseEntity<>(SuccessMessage.JOIN_SUCCESS_MESSAGE.getSuccessMessage(), HttpStatus.CREATED);
         });
-    }
-
-    @DeleteMapping("/drop/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
-        return userService.deleteUser(userId);
     }
 
     private ResponseEntity<String> handleRequest(RequestHandler handler) {

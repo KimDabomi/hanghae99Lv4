@@ -1,12 +1,11 @@
 package org.sparta.hanghae99lv4.controller;
 
+import org.sparta.hanghae99lv4.message.SuccessMessage;
 import org.sparta.hanghae99lv4.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users/{userId}/lectures/{lectureId}")
@@ -20,10 +19,19 @@ public class LikeController {
     }
 
     @PostMapping("/like")
-    public ResponseEntity<String> createLikeAndUnlike(
+    public ResponseEntity<String> createLike(
             @PathVariable Long userId,
             @PathVariable Long lectureId
     ) {
-        return likeService.createLikeAndUnlike(userId, lectureId);
+        return likeService.createLike(userId, lectureId);
+    }
+
+    @DeleteMapping("/like")
+    public ResponseEntity<String> deleteLike(
+            @PathVariable Long userId,
+            @PathVariable Long lectureId
+    ) {
+        likeService.deleteLike(userId, lectureId);
+        return new ResponseEntity<>(SuccessMessage.UNLIKE_MESSAGE.getSuccessMessage(), HttpStatus.OK);
     }
 }

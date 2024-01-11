@@ -24,17 +24,9 @@ public class LikeService {
     private final LectureRepository lectureRepository;
 
     @Transactional
-    public ResponseEntity<String> createLikeAndUnlike(Long userId, Long lectureId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage()));
-
-        Lecture lecture = lectureRepository.findById(lectureId)
-                .orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage()));
-
-        if (likeRepository.existsByUserAndLecture(user, lecture)) {
-            likeRepository.deleteByUserAndLecture(user, lecture);
-            return new ResponseEntity<>(SuccessMessage.UNLIKE_MESSAGE.getSuccessMessage(), HttpStatus.OK);
-        }
+    public ResponseEntity<String> createLike(Long userId, Long lectureId) {
+        User user = findUser(userId);
+        Lecture lecture = findLecture(lectureId);
 
         Like like = new Like();
         like.setUser(user);
@@ -42,5 +34,25 @@ public class LikeService {
         likeRepository.save(like);
 
         return new ResponseEntity<>(SuccessMessage.LIKE_MESSAGE.getSuccessMessage(), HttpStatus.CREATED);
+    }
+
+    @Transactional
+    public void deleteLike(Long userId, Long lectureId) {
+        User user = findUser(userId);
+        Lecture lecture = findLecture(lectureId);
+
+        if (likeRepository.existsByUserAndLecture(user, lecture)) {
+            likeRepository.deleteByUserAndLecture(user, lecture);
+        }
+    }
+
+    private Lecture findLecture(Long lectureId) {
+        return lectureRepository.findById(lectureId)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_LECTURE_ERROR_MESSAGE.getErrorMessage()));
+    }
+
+    private User findUser(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorMessage.EXIST_USER_ERROR_MESSAGE.getErrorMessage()));
     }
 }
